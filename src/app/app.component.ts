@@ -16,8 +16,20 @@ export class AppComponent {
   builder=inject(FormBuilder)
   forms=this.builder.group({
     nome:['',Validators.required],
-    email:['',[Validators.required,Validators.email]]
+    email:['',[Validators.required,Validators.email]],
+    domain:['',[Validators.required,Validators.pattern(/^[a-zA-Z0-9]+$/)]],
+    dominios:['']
   })
+  dominios=[
+    {
+      'nome':'cesar.co.ao',
+      'casa':'ao04423'
+    },
+    {
+      'nome':'mpoao.ao',
+      'casa':'sjdkf2344'
+    }
+  ]
   isSubmited=false
   validar(campo:string){
     return this.forms.get(campo)?.invalid &&(this.forms.get(campo)?.dirty || this.forms.get(campo)?.touched||this.isSubmited) 

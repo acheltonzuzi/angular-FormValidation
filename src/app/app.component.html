@@ -1,4 +1,4 @@
-<form [formGroup]="forms" (submit)="submit()">
+<!-- <form [formGroup]="forms" (submit)="submit()">
 
   <input type="text" placeholder="nome" formControlName="nome" [class.invalid]="validar('nome')" >
   @if (errorMessage('required','nome')) {
@@ -13,4 +13,41 @@
   }
   <button>Salvar</button>
   {{forms.valid}}
-</form>
+</form> -->
+
+<div class="p-20 border shadow-md rounded-sm w-2/4 mx-auto mt-20">
+  <form [formGroup]="forms" (submit)="submit()">
+    <div class="">
+      <input formControlName="nome" [class.border-red-500]="validar('nome')" type="text" class="border border-gray-500 my-2 p-3 rounded-sm  focus:outline-blue-600 w-full" placeholder="nome...">
+      @if (errorMessage('required','nome')) {
+        <p class="text-red-500">Campo obrigatorio</p>
+      }
+    </div>
+    <div class="">
+      <input formControlName="email" [class.border-red-500]="validar('email')" type="text" class="border border-gray-500 my-2 p-3 rounded-sm  focus:outline-blue-600 w-full" placeholder="email...">
+      @if (errorMessage('required','email')) {
+        <p class="text-red-500">Campo obrigatorio</p>
+      }
+      @if (errorMessage('email','email')) {
+        <p class="text-red-500">Campo deve ser um email</p>
+      }
+    </div>
+    <div class="">
+      <input formControlName="domain" [class.border-red-500]="validar('domain')" type="text" class="border border-gray-500 my-2 p-3 rounded-sm  focus:outline-blue-600 w-full" placeholder="email...">
+      @if (errorMessage('required','domain')) {
+        <p class="text-red-500">Campo obrigatorio</p>
+      }
+      @if (errorMessage('pattern','domain')) {
+        <p class="text-red-500">Campo deve conter espaco nem simbolos</p>
+      }
+    </div>
+    <div class="">
+      <select name="" id=""  formControlName="dominios" class="p-3 border  w-full">
+        @for (item of dominios; track item.nome) {
+          <option [ngValue]="item">{{item.nome}}</option>
+        }
+      </select>
+    </div>
+    <button class="w-full bg-blue-600 text-white rounded-sm py-3 my-3">Salvar</button>
+  </form>
+</div>
